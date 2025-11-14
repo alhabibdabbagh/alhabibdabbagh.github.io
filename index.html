@@ -1,1 +1,287 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL HABİB DABBAG - Java/Kotlin Software Engineer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom font import for a cleaner look */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
+        :root {
+            /* Define your color palette based on a dark theme */
+            --color-primary: #f59e0b; /* Amber */
+            --color-secondary: #1f2937; /* Dark Gray (Card background) */
+            --color-text: #e5e7eb; /* Light Gray */
+            --color-bg: #030712; /* Deep Black (Main background) */
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
 
+        /* Utility class for section headings */
+        .section-heading {
+            border-bottom: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Card styling for content blocks */
+        .content-card {
+            background-color: var(--color-secondary);
+            border-radius: 0.75rem; /* rounded-xl */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Experience item styling */
+        .experience-item {
+            border-left: 3px solid var(--color-primary);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Icon styling to automatically initialize lucide icons */
+        .lucide {
+            width: 1.25rem;
+            height: 1.25rem;
+            stroke-width: 2.5;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Contact Info Section -->
+    <header class="bg-gray-900 shadow-lg p-6 md:p-10 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between">
+            <div class="text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">AL HABİB DABBAG</h1>
+                <p class="text-xl md:text-2xl font-medium text-amber-400 mt-1">Java / Kotlin Software Engineer</p>
+            </div>
+            
+            <!-- Contact Links -->
+            <div class="mt-4 md:mt-0 space-y-2 md:space-y-0 md:space-x-6 flex flex-col md:flex-row text-sm">
+                <a href="mailto:habibdabbag@gmail.com" class="flex items-center text-gray-300 hover:text-amber-400 transition">
+                    <i data-lucide="mail" class="lucide mr-2"></i> habibdabbag@gmail.com
+                </a>
+                <a href="tel:+905346006130" class="flex items-center text-gray-300 hover:text-amber-400 transition">
+                    <i data-lucide="phone" class="lucide mr-2"></i> +90 534 600 61 30
+                </a>
+                <a href="https://github.com/alhabibdabbag" target="_blank" class="flex items-center text-gray-300 hover:text-amber-400 transition">
+                    <i data-lucide="github" class="lucide mr-2"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/habibdabbag/" target="_blank" class="flex items-center text-gray-300 hover:text-amber-400 transition">
+                    <i data-lucide="linkedin" class="lucide mr-2"></i> LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto p-6 md:p-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left Column: Summary, Skills, Personal/Education -->
+        <div class="lg:col-span-2">
+
+            <!-- Summary -->
+            <section class="content-card">
+                <h2 class="section-heading">Özet (Summary)</h2>
+                <p class="text-gray-300 mb-4">
+                    Adesso Turkey'de Java Developer olarak görev yapıyorum. Banka hesabı olsun veya olmasın, gençlerin finansal ihtiyaçlarını karşılayan yeni nesil bir platform olan Tosla üzerinde çalışıyorum. Yenilikçi Tosla uygulaması, kullanıcıların günlük bankacılık işlemlerini kolay ve güvenli bir şekilde gerçekleştirmelerini ve sosyalleşmelerini sağlıyor.
+                </p>
+                <p class="text-gray-300">
+                    Sakarya Üniversitesi Bilgisayar Mühendisliği Bölümü'nden 2019 yılında Yüksek Onur Derecesiyle mezun oldum. Java, JavaScript, CSS, jQuery, HTML, Hybris yapıları, önbellek yönetimi ve openID connect gibi teknolojilerde deneyimliyim. Yeni teknolojileri öğrenme ve karmaşık problemleri yaratıcı çözümlerle çözme konusunda tutkuluyum. Amacım, Java geliştirme uzmanlığımla topluma katkıda bulunmaktır.
+                </p>
+            </section>
+
+            <!-- Work Experience -->
+            <section class="content-card">
+                <h2 class="section-heading">İş Deneyimi (Work Experience)</h2>
+
+                <!-- Adesso Turkey -->
+                <div class="experience-item">
+                    <h3 class="text-xl font-semibold text-white">Java Developer</h3>
+                    <p class="text-amber-400 font-medium">Adesso Turkey (İstanbul, Türkiye) (Remote)</p>
+                    <p class="text-sm text-gray-400">10/2022 – Halen Devam Ediyor</p>
+                    <p class="mt-2 text-gray-300 italic">"Inventors, engineers and designers together to create digital products and IT solutions."</p>
+
+                    <div class="mt-4 space-y-4">
+                        <!-- Project 1: Borenco -->
+                        <div class="p-4 bg-gray-800 rounded-md">
+                            <h4 class="font-bold text-amber-300">1. Borenco (Electric Vehicle Management)</h4>
+                            <p class="text-sm text-gray-400 mb-2">Güvenilir, hızlı ve sürdürülebilir elektrikli araç şarj ağının geliştirilmesine katkı.</p>
+                            <p class="text-xs text-gray-500 font-mono">Tech Stack: Java 21, Spring Boot, Maven, Lombok, Docker, PostgreSQL, Azure.</p>
+                            <ul class="list-disc list-inside text-sm text-gray-300 mt-1 space-y-0.5">
+                                <li>Roller, izinler ve CRUD işlemleri için backend servisleri geliştirdim.</li>
+                                <li>Audit loglama, biletleme ve Flyway tabanlı DB migrasyonlarını uyguladım.</li>
+                                <li>SAP, EPDK sistemleri ve Azure dosya yönetimini entegre ettim.</li>
+                            </ul>
+                        </div>
+                        <!-- Project 2: TOSLA -->
+                        <div class="p-4 bg-gray-800 rounded-md">
+                            <h4 class="font-bold text-amber-300">2. TOSLA (AKBANK)</h4>
+                            <p class="text-sm text-gray-400 mb-2">AkÖde'nin yeni nesil platformu Tosla'nın geliştirilmesi.</p>
+                            <p class="text-xs text-gray-500 font-mono">Tech Stack: Couchbase, Microservices, OpenShift, Gradle, Redis, Docker, Apache Kafka, React.js, Kotlin, Spring Boot, SQL, Git.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Renova Consulting -->
+                <div class="experience-item">
+                    <h3 class="text-xl font-semibold text-white">Java SAP Commerce Cloud (Hybris) Developer</h3>
+                    <p class="text-amber-400 font-medium">Renova Consulting (İstanbul, Türkiye) (Remote)</p>
+                    <p class="text-sm text-gray-400">06/2020 – 09/2022</p>
+
+                    <div class="mt-4 space-y-4">
+                        <!-- Project 1: Turkcell Market Place -->
+                        <div class="p-4 bg-gray-800 rounded-md">
+                            <h4 class="font-bold text-amber-300">1. Turkcell Market Place (B2B E-Commerce)</h4>
+                            <p class="text-sm text-gray-400">Hybris üzerinde Turkcell bayilerinin alışveriş yaptığı B2B projesi. UX geçişi ve mağaza ön yüzünün yenilenmesi.</p>
+                            <p class="text-xs text-gray-500 font-mono">Tech Stack: Java, JavaScript, CSS, jQuery, HTML, Hybris.</p>
+                        </div>
+                        <!-- Project 2: Be a Volunteer – Red Crescent Volunteers -->
+                        <div class="p-4 bg-gray-800 rounded-md">
+                            <h4 class="font-bold text-amber-300">2. Be a Volunteer - Red Crescent Volunteers (Kızılay)</h4>
+                            <p class="text-sm text-gray-400">Online gönüllülük ve sosyal iletişim ağı platformu.</p>
+                            <p class="text-xs text-gray-500 font-mono">Tech Stack: Core Java, HSQL, Jenkins, AngularJS, SQL, Git, HTML5, CSS, SAP Hybris, JavaScript.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </div>
+
+        <!-- Right Column: Skills, Education, Certs, Languages -->
+        <div class="lg:col-span-1 space-y-6">
+            
+            <!-- Technical Skills -->
+            <section class="content-card">
+                <h2 class="section-heading">Yetenekler (Skills)</h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="skill-badge">Java (Core/21)</span>
+                    <span class="skill-badge">Spring Boot</span>
+                    <span class="skill-badge">Kotlin</span>
+                    <span class="skill-badge">Microservices</span>
+                    <span class="skill-badge">Docker</span>
+                    <span class="skill-badge">Apache Kafka</span>
+                    <span class="skill-badge">PostgreSQL / SQL</span>
+                    <span class="skill-badge">Redis / Couchbase</span>
+                    <span class="skill-badge">SAP Hybris</span>
+                    <span class="skill-badge">Git</span>
+                    <span class="skill-badge">JavaScript / HTML / CSS</span>
+                    <span class="skill-badge">Azure</span>
+                    <span class="skill-badge">OpenShift</span>
+                    <span class="skill-badge">React.js (Basic)</span>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section class="content-card">
+                <h2 class="section-heading">Eğitim (Education)</h2>
+                <div>
+                    <p class="text-lg font-semibold text-white">Bilgisayar Mühendisliği Lisans</p>
+                    <p class="text-amber-400">Sakarya Üniversitesi</p>
+                    <p class="text-sm text-gray-400">2015 - 2019 / Yüksek Onur Belgesi</p>
+                </div>
+            </section>
+            
+            <!-- Certifications -->
+            <section class="content-card">
+                <h2 class="section-heading">Sertifikalar (Certifications)</h2>
+                <ul class="space-y-3">
+                    <li class="border-b border-gray-700 pb-2">
+                        <p class="font-semibold text-white">Spring Security 6 Zero to Master</p>
+                        <p class="text-sm text-amber-400">Udemy, 09/2023</p>
+                    </li>
+                    <li class="border-b border-gray-700 pb-2">
+                        <p class="font-semibold text-white">Microservices Architecture - The Complete Guide</p>
+                        <p class="text-sm text-amber-400">Udemy, 03/2023</p>
+                    </li>
+                    <li class="border-b border-gray-700 pb-2">
+                        <p class="font-semibold text-white">JavaScript (96 Saat)</p>
+                        <p class="text-sm text-amber-400">BTK Akademi, 08/2021</p>
+                    </li>
+                    <li>
+                        <p class="font-semibold text-white">İstanbul Java 101 Bootcamp</p>
+                        <p class="text-sm text-amber-400">Kodluyoruz, 03/2020</p>
+                    </li>
+                </ul>
+            </section>
+            
+            <!-- Languages & Publications -->
+            <section class="content-card">
+                <h2 class="section-heading">Diller & Yayınlar</h2>
+                <div class="mb-4">
+                    <h3 class="text-lg font-semibold text-white mb-1">Diller</h3>
+                    <p class="text-gray-300"><span class="font-medium text-amber-400">Türkçe:</span> İki Dilli Yeterlilik</p>
+                    <p class="text-gray-300"><span class="font-medium text-amber-400">Arapça:</span> Ana Dil</p>
+                    <p class="text-gray-300"><span class="font-medium text-amber-400">İngilizce:</span> B2 Seviyesi</p>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Projeler & Yayınlar</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li>
+                            <i data-lucide="link" class="lucide inline mr-1 text-amber-400"></i>
+                            <a href="https://alhabibtercumanlik.com/" target="_blank" class="text-gray-300 hover:text-amber-400 transition">AlhabibTercumanlık (Kişisel Proje)</a>
+                        </li>
+                        <li>
+                            <i data-lucide="file-text" class="lucide inline mr-1 text-amber-400"></i>
+                            <a href="https://medium.com/@habibdabbag/gi%CC%87t-architecture-12e02b1dc66e" target="_blank" class="text-gray-300 hover:text-amber-400 transition">GIT Architecture (Medium Yayın)</a>
+                        </li>
+                        <li>
+                            <i data-lucide="users" class="lucide inline mr-1 text-amber-400"></i>
+                            <span class="text-gray-300">Gönüllülük: CS50x Türkçe Çevirmeni (Kodluyoruz)</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-7xl mx-auto p-6 md:p-10 text-center text-sm text-gray-500">
+        <p>Referanslar istek üzerine sağlanabilir.</p>
+        <p class="mt-1">© 2024 AL HABİB DABBAG | İstanbul, Türkiye</p>
+    </footer>
+
+    <!-- Script to initialize Lucide icons -->
+    <script>
+        lucide.createIcons();
+        
+        // Tailwind utility class definitions used in the content
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .skill-badge {
+                display: inline-flex;
+                align-items: center;
+                padding: 0.35rem 0.75rem;
+                background-color: #374151; /* gray-700 */
+                color: #f59e0b; /* amber-500 */
+                border-radius: 9999px; /* rounded-full */
+                font-size: 0.875rem; /* text-sm */
+                font-weight: 500;
+                border: 1px solid #4b5563;
+                transition: background-color 0.3s;
+            }
+            .skill-badge:hover {
+                background-color: #4b5563;
+            }
+        `;
+        document.head.appendChild(style);
+
+    </script>
+</body>
+</html>

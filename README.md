@@ -1,55 +1,55 @@
-🧑‍💻 AL HABİB DABBAG - Java / Kotlin Software Engineer
+# 🧑‍💻 AL HABİB DABBAG - Java / Spring Boot Software Engineer
 
-Bu depo, Java ve Kotlin alanında uzmanlaşmış bir Yazılım Mühendisi olan Al Habib Dabbag'ın çevrimiçi kişisel portföyünü ve özgeçmişini (index.html) barındırmaktadır.
+This repository hosts the online personal portfolio and resume website for Al Habib Dabbag, a Software Engineer specialized in Java and Spring Boot ecosystems.
 
-Portföy, yazılım geliştirme, mikro hizmet mimarileri ve SAP Commerce Cloud (Hybris) deneyimlerimi öne çıkarmak için tasarlanmış tek sayfalık modern bir web sitesidir.
+The portfolio is designed as a modern, single-page website to showcase my experience in software development, microservices architecture, and backend technologies.
 
-🚀 Proje Hakkında
+🌐 **Live Site:** [https://alhabibdabbagh.github.io](https://alhabibdabbagh.github.io)
 
-Bu web sitesi, profesyonel geçmişimi, teknik yeteneklerimi, iş deneyimlerimi ve kişisel projelerimi potansiyel işverenlere ve topluluğa sunmayı amaçlamaktadır.
+---
 
-✨ Temel Uzmanlık Alanları
+## 🚀 About the Project
 
-Backend Geliştirme: Java (Spring Boot, Java 21), Kotlin.
+This website serves to present my professional background, technical abilities, work experience, and personal projects to potential employers and the community.
 
-Mikro Hizmetler: Mimariler, Docker, OpenShift, Apache Kafka, Redis, Couchbase.
+---
 
-Veritabanı ve Önbellek: PostgreSQL, SQL, Cache Management.
+## ✨ Core Areas of Expertise
 
-E-ticaret Çözümleri: SAP Commerce Cloud (Hybris).
+- **Backend Development:** Java (Spring Boot, Maven), SQL
+- **Microservices:** Architecture design, RESTful API development
+- **Database:** PostgreSQL, SQL, data management
+- **Enterprise Solutions:** Backend development in Borusan Borenco projects
 
-🛠️ Kullanılan Teknolojiler
+---
 
-Web sitesi, hızlı ve modern bir arayüz sağlamak için aşağıdaki teknolojilerle oluşturulmuştur:
+## 🛠️ Technologies Used
 
-HTML5: İçerik yapısı.
+The website is built using the following technologies to ensure a fast and modern interface:
 
-Tailwind CSS: Modern, tamamen duyarlı (responsive) tasarım ve stil.
+- **HTML5:** Content structure
+- **CSS3:** Modern, fully responsive design and styling
+- **JavaScript:** Interactive elements
 
-Lucide Icons: Temiz ve profesyonel ikonografi.
+---
 
-📂 İçerik Yapısı
+## 📂 Repository Structure
 
-Dosya Adı
+| File Name | Description |
+|-----------|-------------|
+| `index.html` | The single file containing the complete portfolio website. All CV content, styling, and scripts are embedded here. |
+| `style.css` | Custom CSS styles for the website |
+| `README.md` | General overview of the project and information about the repository |
 
-Açıklama
+---
 
-index.html
+## 🚀 Run Locally
 
-Portföy sitesinin tamamını içeren tek dosya. Tüm CV, stil (Tailwind) ve script bu dosyadadır.
+```bash
+# Clone the repository
+git clone https://github.com/alhabibdabbagh/alhabibdabbagh.github.io.git
 
-README.md
+# Navigate to the directory
+cd alhabibdabbagh.github.io
 
-Projenin genel bir özeti ve depodaki dosyalar hakkında bilgi.
-
-🔗 İletişim
-
-Daha fazla bilgi veya işbirliği fırsatları için lütfen iletişime geçmekten çekinmeyin:
-
-LinkedIn: https://www.linkedin.com/in/habibdabbag/
-
-GitHub: https://github.com/alhabibdabbag
-
-E-posta: habibdabbag@gmail.com
-
-Bu portföy, Al Habib Dabbag tarafından tasarlanmış ve yönetilmektedir.
+# Open index.html in your browser

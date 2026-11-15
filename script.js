@@ -1,134 +1,159 @@
-// Lightweight interactions: typewriter, theme toggle, smooth scroll, filter, modal, form validation, reveal on scroll.
+// Hero service-mesh animation, typed line, and scroll reveal.
+(function () {
+  document.documentElement.classList.add('js');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Typewriter for roles / name
-  typeWriter(['Frontend Engineer', 'JavaScript • Web Performance', 'Accessible Interfaces'], '#typed-role', 60);
-  // Theme toggle
-  const themeToggle = document.getElementById('themeToggle');
-  const root = document.documentElement;
-  const savedTheme = localStorage.getItem('theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-  setTheme(savedTheme);
-  themeToggle.addEventListener('click', () => setTheme(root.classList.contains('light') ? 'dark' : 'light'));
-  function setTheme(name) {
-    if (name === 'light') root.classList.add('light'); else root.classList.remove('light');
-    localStorage.setItem('theme', name);
-    themeToggle.textContent = name === 'light' ? '🌙' : '🌞';
+  // ---------- Typed line ----------
+  var typed = document.getElementById('typed');
+  var lines = [
+    'Java 21 and Spring Boot',
+    'event-driven microservices with Kafka',
+    'Claude Certified Developer – Foundations'
+  ];
+  if (typed) {
+    if (reduced) {
+      typed.textContent = lines[0];
+    } else {
+      var li = 0, ci = 0, deleting = false;
+      (function tick() {
+        var line = lines[li];
+        typed.textContent = line.slice(0, ci);
+        var wait = 55;
+        if (!deleting && ci < line.length) { ci++; }
+        else if (!deleting) { deleting = true; wait = 1800; }
+        else if (ci > 0) { ci--; wait = 25; }
+        else { deleting = false; li = (li + 1) % lines.length; wait = 350; }
+        setTimeout(tick, wait);
+      })();
+    }
   }
 
-  // Smooth scroll for header nav links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      const target = document.querySelector(a.getAttribute('href'));
-      if(target){
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth',block:'start'});
-        // collapse mobile nav if open
-        document.getElementById('nav')?.classList.remove('show');
+  // ---------- Scroll reveal ----------
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduced) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  // ---------- Service mesh canvas ----------
+  // Nodes are services; bright pulses are messages travelling between them.
+  var canvas = document.getElementById('mesh');
+  if (!canvas || !canvas.getContext) return;
+  var ctx = canvas.getContext('2d');
+  var W = 0, H = 0, dpr = 1, nodes = [], pulses = [], running = false, rafId = 0;
+  var LINK = 170;
+
+  function resize() {
+    var r = canvas.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = r.width; H = r.height;
+    canvas.width = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var count = Math.max(10, Math.min(46, Math.round((W * H) / 22000)));
+    nodes = [];
+    for (var i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: 1.6 + Math.random() * 1.8
+      });
+    }
+    pulses = [];
+  }
+
+  function spawnPulse() {
+    var a = nodes[(Math.random() * nodes.length) | 0];
+    var near = nodes.filter(function (n) {
+      return n !== a && Math.hypot(n.x - a.x, n.y - a.y) < LINK;
+    });
+    if (!near.length) return;
+    pulses.push({ a: a, b: near[(Math.random() * near.length) | 0], t: 0, v: 0.012 + Math.random() * 0.012 });
+  }
+
+  function draw(move) {
+    ctx.clearRect(0, 0, W, H);
+    var i, j, a, b, d;
+
+    if (move) {
+      for (i = 0; i < nodes.length; i++) {
+        a = nodes[i];
+        a.x += a.vx; a.y += a.vy;
+        if (a.x < 0 || a.x > W) a.vx *= -1;
+        if (a.y < 0 || a.y > H) a.vy *= -1;
       }
-    });
-  });
-
-  // Menu toggle for small screens
-  document.getElementById('menuToggle').addEventListener('click', ()=>{
-    document.getElementById('nav').classList.toggle('show');
-  });
-
-  // Project filtering
-  const filters = document.querySelectorAll('.filters button');
-  const grid = document.getElementById('projectGrid');
-  filters.forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      filters.forEach(b=>b.classList.remove('active')); btn.classList.add('active');
-      const type = btn.getAttribute('data-filter');
-      filterGrid(type);
-    });
-  });
-  function filterGrid(type){
-    const items = grid.querySelectorAll('.card');
-    items.forEach(i=>{
-      if(type === '*' || i.dataset.type === type) i.style.display = ''; else i.style.display = 'none';
-    });
-  }
-
-  // Modal for project details (demo static content)
-  const modal = document.getElementById('modal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalBody = document.getElementById('modalBody');
-  const modalLink = document.getElementById('modalLink');
-  document.querySelectorAll('.view-btn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      const id = btn.dataset.id;
-      openModal(projectData(id));
-    });
-  });
-  document.querySelector('.modal-close').addEventListener('click', closeModal);
-  modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-  function openModal(data){
-    modalTitle.textContent = data.title;
-    modalBody.textContent = data.description;
-    modalLink.href = data.link;
-    modal.setAttribute('aria-hidden','false');
-  }
-  function closeModal(){
-    modal.setAttribute('aria-hidden','true');
-  }
-  function projectData(id){
-    // Replace with dynamic content or fetch when integrating real projects
-    const examples = {
-      'alpha': {title:'Project Alpha', description:'An SPA focused on fast interactions, a11y, and low bundle size.', link:'#'},
-      'build-helper': {title:'Build Helper', description:'Developer tooling to improve build times and dev ergonomics.', link:'#'},
-      'mobile-app': {title:'Mobile App', description:'Cross-platform mobile app with native-like performance.', link:'#'}
-    };
-    return examples[id] || {title:'Project', description:'Details coming soon', link:'#'};
-  }
-
-  // Simple form validation + demo submit
-  const form = document.getElementById('contactForm');
-  const status = document.getElementById('formStatus');
-  form.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    if(!form.checkValidity()){
-      status.textContent = 'Please fill out all fields correctly.';
-      return;
     }
-    // Demo: pretend to submit, show success
-    status.textContent = 'Sending…';
-    setTimeout(()=>{
-      status.textContent = 'Thanks — message sent (demo).';
-      form.reset();
-    }, 800);
-  });
 
-  // Footer year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // Scroll reveal for sections
-  const reveals = document.querySelectorAll('.section, .card, .hero-text, .hero-card');
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) { e.target.style.opacity=1; e.target.style.transform='none'; obs.unobserve(e.target); }
-    });
-  }, {threshold: 0.12});
-  reveals.forEach(r=>{
-    r.style.opacity = 0;
-    r.style.transform = 'translateY(14px)';
-    r.style.transition = 'opacity 420ms ease, transform 420ms ease';
-    obs.observe(r);
-  });
-
-  // Basic typewriter implementation
-  function typeWriter(words, selector, speed=80){
-    const el = document.querySelector(selector);
-    if(!el) return;
-    let w = 0, l = 0, deleting=false;
-    function tick(){
-      const current = words[w];
-      el.textContent = current.slice(0, l) + (deleting ? '' : '');
-      if(!deleting && l < current.length){ l++; setTimeout(tick, speed + Math.random()*60); }
-      else if(!deleting && l === current.length){ deleting = true; setTimeout(tick, 1200); }
-      else if(deleting && l > 0){ l--; setTimeout(tick, speed/2); }
-      else { deleting=false; w = (w+1) % words.length; setTimeout(tick, 300); }
+    ctx.lineWidth = 1;
+    for (i = 0; i < nodes.length; i++) {
+      for (j = i + 1; j < nodes.length; j++) {
+        a = nodes[i]; b = nodes[j];
+        d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < LINK) {
+          ctx.strokeStyle = 'rgba(120, 170, 255,' + (0.22 * (1 - d / LINK)).toFixed(3) + ')';
+          ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+        }
+      }
     }
-    tick();
+
+    for (i = 0; i < nodes.length; i++) {
+      a = nodes[i];
+      ctx.fillStyle = 'rgba(150, 200, 255, 0.75)';
+      ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, 6.2832); ctx.fill();
+    }
+
+    if (move) {
+      if (pulses.length < 9 && Math.random() < 0.06) spawnPulse();
+      for (i = pulses.length - 1; i >= 0; i--) {
+        var p = pulses[i];
+        p.t += p.v;
+        if (p.t >= 1) { pulses.splice(i, 1); continue; }
+        var x = p.a.x + (p.b.x - p.a.x) * p.t;
+        var y = p.a.y + (p.b.y - p.a.y) * p.t;
+        var g = ctx.createRadialGradient(x, y, 0, x, y, 9);
+        g.addColorStop(0, 'rgba(111, 211, 255, 0.95)');
+        g.addColorStop(1, 'rgba(111, 211, 255, 0)');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(x, y, 9, 0, 6.2832); ctx.fill();
+      }
+    }
   }
-});
+
+  function loop() {
+    if (!running) return;
+    draw(true);
+    rafId = requestAnimationFrame(loop);
+  }
+
+  function start() { if (!running && !reduced) { running = true; loop(); } }
+  function stop() { running = false; cancelAnimationFrame(rafId); }
+
+  resize();
+  draw(false);
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { resize(); draw(false); }, 150);
+  });
+
+  // Only animate while the hero is on screen and the tab is visible.
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries[0].isIntersecting && !document.hidden ? start() : stop();
+    }).observe(canvas);
+  } else {
+    start();
+  }
+  document.addEventListener('visibilitychange', function () {
+    document.hidden ? stop() : start();
+  });
+})();
